@@ -1,0 +1,2278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our GT CS7641 ML Project Page</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        p {
+            text-align: justify;
+        }
+
+        .pca-umap-block {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 30px;
+            justify-content: center;
+            align-items: flex-start;
+            /* font-family: Arial, sans-serif; */
+        }
+
+        .pca-block {
+            width: 45%;
+            min-width: 300px;
+        }
+
+        .umap-block {
+            width: 45%;
+            min-width: 300px;
+        }
+
+        .pca-block p {
+            font-size: 14px;
+            text-align: justify;
+            margin-bottom: 10px;
+        }
+
+        .umap-block p {
+            font-size: 14px;
+            text-align: justify;
+            margin-bottom: 25px;
+        }
+
+        .pca-block figure {
+            text-align: center;
+            margin: 0;
+        }
+
+        .umap-block figure {
+            text-align: center;
+            margin: 0;
+        }
+
+        .logistic-regression-hyperparam-table {
+            border-collapse: collapse;
+            width: 17%;
+            /* margin: 20px auto; */
+            margin-top: 10px;
+            margin-left: 2.5%;
+            background-color: #fff;
+            font-family: Arial, sans-serif;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .logistic-regression-hyperparam-table caption {
+            caption-side: top;
+            text-align: center;
+            font-size: 0.8em;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .logistic-regression-hyperparam-table th,
+        .logistic-regression-hyperparam-table td {
+            text-align: center;
+            /* padding: 10px 14px; */
+            border-bottom: 1px solid #ddd;
+            font-size: 0.75em;
+        }
+
+        .logistic-regression-hyperparam-table th {
+            background-color: #203f61;
+            font-weight: bold;
+            font-size: 0.8em;
+            color:white;
+        }
+
+        .logistic-regression-hyperparam-table tr:hover {
+            background-color: #f1faff;
+        }
+
+        .decision-tree-hyperparam-table {
+            border-collapse: collapse;
+            width: 17%;
+            /* margin: 20px auto; */
+            margin-top: 10px;
+            margin-left: 2.5%;
+            background-color: #fff;
+            font-family: Arial, sans-serif;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .decision-tree-hyperparam-table caption {
+            caption-side: top;
+            text-align: center;
+            font-size: 0.8em;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .decision-tree-hyperparam-table th,
+        .decision-tree-hyperparam-table td {
+            text-align: center;
+            /* padding: 10px 14px; */
+            border-bottom: 1px solid #ddd;
+            font-size: 0.75em;
+        }
+
+        .decision-tree-hyperparam-table th {
+            background-color: #203f61;
+            font-weight: bold;
+            font-size: 0.8em;
+            color:white;
+        }
+
+        .decision-tree-hyperparam-table tr:hover {
+            background-color: #f1faff;
+        }
+
+        .random-forest-hyperparam-table {
+            border-collapse: collapse;
+            width: 17%;
+            /* margin: 20px auto; */
+            margin-top: 10px;
+            margin-left: 2.5%;
+            background-color: #fff;
+            font-family: Arial, sans-serif;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .random-forest-hyperparam-table caption {
+            caption-side: top;
+            text-align: center;
+            font-size: 0.8em;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .random-forest-hyperparam-table th,
+        .random-forest-hyperparam-table td {
+            text-align: center;
+            /* padding: 10px 14px; */
+            border-bottom: 1px solid #ddd;
+            font-size: 0.75em;
+        }
+
+        .random-forest-hyperparam-table th {
+            background-color: #203f61;
+            font-weight: bold;
+            font-size: 0.8em;
+            color:white;
+        }
+
+        .random-forest-hyperparam-table tr:hover {
+            background-color: #f1faff;
+        }
+
+        .gbdt-hyperparam-table {
+            border-collapse: collapse;
+            width: 17%;
+            /* margin: 20px auto; */
+            margin-top: 10px;
+            margin-left: 2.5%;
+            background-color: #fff;
+            font-family: Arial, sans-serif;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .gbdt-hyperparam-table caption {
+            caption-side: top;
+            text-align: center;
+            font-size: 0.8em;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .gbdt-hyperparam-table th,
+        .gbdt-hyperparam-table td {
+            text-align: center;
+            /* padding: 10px 14px; */
+            border-bottom: 1px solid #ddd;
+            font-size: 0.75em;
+        }
+
+        .gbdt-hyperparam-table th {
+            background-color: #203f61;
+            font-weight: bold;
+            font-size: 0.8em;
+            color:white;
+        }
+
+        .gbdt-hyperparam-table tr:hover {
+            background-color: #f1faff;
+        }
+
+        .svm-hyperparam-table {
+            border-collapse: collapse;
+            width: 17%;
+            /* margin: 20px auto; */
+            margin-top: 10px;
+            margin-left: 2.5%;
+            background-color: #fff;
+            font-family: Arial, sans-serif;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .svm-hyperparam-table caption {
+            caption-side: top;
+            text-align: center;
+            font-size: 0.8em;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .svm-hyperparam-table th,
+        .svm-hyperparam-table td {
+            text-align: center;
+            /* padding: 10px 14px; */
+            border-bottom: 1px solid #ddd;
+            font-size: 0.75em;
+        }
+
+        .svm-hyperparam-table th {
+            background-color: #203f61;
+            font-weight: bold;
+            font-size: 0.8em;
+            color:white;
+        }
+
+        .svm-hyperparam-table tr:hover {
+            background-color: #f1faff;
+        }
+
+
+        .logistic-regression-metrics-container {
+            display: flex;
+            /* gap: 10px; */
+            margin-bottom: 30px;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .logistic-regression-metrics-container figure,
+        .logistic-regression-metrics-container .table-wrapper {
+            width: 33%;
+            text-align: center;
+            box-sizing: border-box;
+            margin-top: 10px;
+        }
+
+        .logistic-regression-metrics-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        table.logistic-regression-classification-report {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0 auto;
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+        }
+
+        table.logistic-regression-classification-report th,
+        table.logistic-regression-classification-report td {
+            border: 1px solid #ccc;
+            padding: 6px 8px;
+            text-align: center;
+        }
+
+        table.logistic-regression-classification-report th {
+            background-color: #03376e;
+            color:white;
+        }
+
+        table.logistic-regression-classification-report caption {
+            font-weight: bold;
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+
+        .decision-tree-metrics-container {
+            display: flex;
+            /* gap: 10px; */
+            margin-bottom: 30px;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .decision-tree-metrics-container figure,
+        .decision-tree-metrics-container .table-wrapper {
+            width: 33%;
+            text-align: center;
+            box-sizing: border-box;
+            margin-top: 10px;
+        }
+
+        .decision-tree-metrics-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        table.decision-tree-classification-report {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0 auto;
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+        }
+
+        table.decision-tree-classification-report th,
+        table.decision-tree-classification-report td {
+            border: 1px solid #ccc;
+            padding: 6px 8px;
+            text-align: center;
+        }
+
+        table.decision-tree-classification-report th {
+            background-color: #03376e;
+            color:white;
+        }
+
+        table.decision-tree-classification-report caption {
+            font-weight: bold;
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+
+        .random-forest-metrics-container {
+            display: flex;
+            /* gap: 10px; */
+            margin-bottom: 30px;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .random-forest-metrics-container figure,
+        .random-forest-metrics-container .table-wrapper {
+            width: 33%;
+            text-align: center;
+            box-sizing: border-box;
+            margin-top: 10px;
+        }
+
+        .random-forest-metrics-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        table.random-forest-classification-report {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0 auto;
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+        }
+
+        table.random-forest-classification-report th,
+        table.random-forest-classification-report td {
+            border: 1px solid #ccc;
+            padding: 6px 8px;
+            text-align: center;
+        }
+
+        table.random-forest-classification-report th {
+            background-color: #03376e;
+            color:white;
+        }
+
+        table.random-forest-classification-report caption {
+            font-weight: bold;
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+
+        .gbdt-metrics-container {
+            display: flex;
+            /* gap: 10px; */
+            margin-bottom: 30px;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .gbdt-metrics-container figure,
+        .gbdt-metrics-container .table-wrapper {
+            width: 33%;
+            text-align: center;
+            box-sizing: border-box;
+            margin-top: 10px;
+        }
+
+        .gbdt-metrics-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        table.gbdt-classification-report {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0 auto;
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+        }
+
+        table.gbdt-classification-report th,
+        table.gbdt-classification-report td {
+            border: 1px solid #ccc;
+            padding: 6px 8px;
+            text-align: center;
+        }
+
+        table.gbdt-classification-report th {
+            background-color: #03376e;
+            color:white;
+        }
+
+        table.gbdt-classification-report caption {
+            font-weight: bold;
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+
+        .svm-metrics-container {
+            display: flex;
+            /* gap: 10px; */
+            margin-bottom: 30px;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .svm-metrics-container figure,
+        .svm-metrics-container .table-wrapper {
+            width: 33%;
+            text-align: center;
+            box-sizing: border-box;
+            margin-top: 10px;
+        }
+
+        .svm-metrics-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        table.svm-classification-report {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0 auto;
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+        }
+
+        table.svm-classification-report th,
+        table.svm-classification-report td {
+            border: 1px solid #ccc;
+            padding: 6px 8px;
+            text-align: center;
+        }
+
+        table.svm-classification-report th {
+            background-color: #03376e;
+            color:white;
+        }
+
+        table.svm-classification-report caption {
+            font-weight: bold;
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+
+        .highlight {
+            background-color: #f0f7ff;
+            font-weight: bold;
+            color:black
+        }
+
+        .gene-table {
+            width: 80%;
+            border-collapse: collapse;
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+            margin: 20px 0;
+        }
+
+        .gene-table caption {
+            caption-side: top;
+            font-size: 15px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .gene-table th {
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+            text-align: center;
+            background-color: #203f61;
+            color: white;
+        }
+
+        .gene-table td {
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+            text-align: justify;
+        }
+
+        /* .gene-table thead {
+            background-color: #e6f2ff;
+        } */
+
+        .gene-table tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .gene-table tbody tr:hover {
+            background-color: #f1faff;
+        }
+
+    </style>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>CS7641 Machine Learning - Group 3 Project</h1>
+        <!-- <p><a href="https://youtu.be/glB5aJTne4Q" target="_blank" rel="noopener noreferrer" style="font-weight: bold;">Watch our video presentation!</a></p> -->
+        <!-- <nav>
+            <ul>
+                <li><a href="#introduction">Introduction</a></li>
+                <li><a href="#methods">Methods</a></li>
+                <li><a href="#libraries">Libraries</a></li>
+                <li><a href="#project goals">Project goals</a></li>
+                <li><a href="#expected results">Expected results</a></li>
+                <li><a href="#references">References</a></li>
+                <li><a href="#contributions table">Contributions table</a></li>
+                <li><a href="https://github.gatech.edu/lramirez65/CS7641_ML_group3" target="_blank" rel="noopener noreferrer">GitHub repository</a></li>
+            </ul>
+        </nav> -->
+    </header>
+
+    <main>
+        <section id="introduction">
+            <h2>Introduction</h2>
+            <p>Breast cancer remains one of the most prevalent and life-threatening forms of cancer among women worldwide. Despite advancements in early detection and treatment, predicting patient outcomes and tailoring personalized therapies remains difficult due to the biological complexity of the disease. One of the key challenges in breast cancer management is the high degree of heterogeneity at both the clinical and molecular levels, which complicates prognosis and treatment decisions. However, gene expression profiling has emerged as a powerful tool to uncover the biological underpinnings of breast cancer heterogeneity and to predict clinical outcomes. The landmark study by Van ’t Veer et al. (1) demonstrated that gene expression signatures could be used to predict breast cancer prognosis, laying the groundwork for molecular subtyping and personalized therapy. Building on this, large-scale analyses, such as Curtis et al. (2), revealed novel breast cancer subgroups based on combined genomic and transcriptomic data, underscoring the complexity of the disease. Further research has highlighted the relationship between gene coexpression networks and clinical outcomes. For instance, Clarke et al. performed large-scale coexpression analyses and found that specific transcriptional networks were significantly correlated with breast cancer survival (3). Such findings emphasize the value of moving beyond single-gene analyses toward understanding complex gene-gene interactions.</p>
+	    <p>Building on this body of work, this project leverages the <strong>METABRIC dataset</strong> (4), introduced by Curtis et al. (2), to build machine learning models for patient classification and outcome prediction. The dataset includes gene expression profiles and clinical data for nearly 2,000 breast cancer patients. The dataset provides detailed information on over 600 genes as well as clinical variables such as patient age, tumor size, hormone receptor status, and survival outcomes.</p>
+            <!--<img src="images/ml_logo.png" alt="Machine Learning Logo" style="max-width: 300px;">-->
+        </section>
+
+        <section id="problem-statement">
+            <h2>Problem Statement</h2>
+                <p>
+                    Breast cancer prognosis remains challenging due to the high clinical and molecular heterogeneity of the disease, limiting the effectiveness of generalized treatment approaches. While gene expression profiling has shown promise in stratifying patients and predicting outcomes, current methods often fail to capture the complexity of gene-gene interactions. This project aims to leverage the METABRIC dataset to develop machine learning models that integrate gene expression and clinical data for more accurate breast cancer patient classification and survival outcome prediction. Further, we hope to develop a machine learning model acceptable to the medical community, capable of classifying different types of breast cancer with high recall and precision.
+                </p>
+
+        </section>
+
+        <section id="methodology">
+            <h2>Proposed Methodology</h2>
+
+            <h3>Basic Overview of Data:</h3>
+            <p>
+                The METABRIC dataset contains 30 clinical features, m-RNA expression levels (z-score scaled) for 489 genes and mutations (binary features) reported in 173 genes.
+            </p>
+
+            <h3>Target Column Selection:</h3>
+            <p>
+                Out of the 30 clinical features present in the dataset, the <strong>pam50 + claudin-low subtype</strong> column was treated as our target variable, over other columns such as cancer_type and cancer_type_detailed. 
+            </p>
+
+            <p>
+                The granularity provided with the pam50 + claudin-low subtype column is much higher (classes including luminal A, luminal B, HER2-enriched, Basal-like, Claudin-low, and normal-like) than the other columns - cancer type (classes include breast cancer or breast sarcoma) or cancer type detailed (Breast Invasive Ductal Carcinoma, Breast Mixed Ductal and Lobular Carcinoma, Breast Invasive Lobular Carcinoma, Breast Invasive Mixed Mucinous Carcinoma and Metaplastic Breast Cancer).
+            </p>
+
+
+            <p>
+                Moreover, the pam50 + claudin-low subtype provides molecular resolution to the problem, over the coarse binary classification provided by cancer_type or structural resolution (ductal, lobular) provided by cancer_type_detailed. The pam50 + claudin-low subtype shows direct association with the ‘aggressiveness’ of the cancer and can offer better biological insights in terms of treatment options.
+            </p>
+        </section>
+
+        <section id="eda">
+            <h2>Exploratory Data Analysis</h2>
+
+                <strong> Clinical Data </strong>
+
+                    <p>
+                        <u>Histograms:</u> We plot stacked histograms for each column in the clinical areas subset to visually assess if these variables differ by breast cancer subtype. In doing this, we hoped to achieve the following two goals: (a) find clinical variables that differ between subtypes by visually spotting shifts in distributions between classes and (b) guide feature selection e.g., if distributions for all subtypes look identical, that feature may have low predictive power. In the interest of space, we only present results for the most relevant histograms.
+                    </p>
+
+                    <div style="display: flex; gap: 100px; margin-bottom: 30px;">
+                        <figure style="text-align: center; width: 33%;">
+                            <img src="figures/histogram-age-at-diagnosis.png" style="width: 100%; height: auto;">
+                            <figcaption>Figure 1: Histogram for Age at Diagnosis</figcaption>
+                        </figure>
+                        <figure style="text-align: center; width: 33%;">
+                            <img src="figures/histogram-mutation-count.png" style="width: 100%; height: auto;">
+                            <figcaption>Figure 2: Histogram for Mutation Count</figcaption>
+                        </figure>
+                    </div>
+
+                    <div style="display: flex; gap: 100px; margin-bottom: 30px;">
+                        <figure style="text-align: center; width: 33%;">
+                            <img src="figures/histogram-overall-survival-months.png" style="width: 100%; height: auto;">
+                            <figcaption>Figure 3: Histogram for Overall Survival Months</figcaption>
+                        </figure>
+                        <figure style="text-align: center; width: 33%;">
+                            <img src="figures/histogram-tumour-size.png" style="width: 100%; height: auto;">
+                            <figcaption>Figure 4: Histogram for Tumour Size</figcaption>
+                        </figure>
+                    </div>
+
+                    <ul>
+                        <li>
+                            Age at Diagnosis: For the “Basal” subtype, the age range is skewed to the left i.e., most of the data points are between 40 and 70. However, for the “LumB” subtype, we see that most of the data points are between 55 and 95.
+                        </li>
+                        <li>
+                            Mutation count - For the ‘Normal’ and ‘Claudin-low’ subtypes, mutation count is skewed to the left. However, for the other subtypes, we see higher mutation counts.
+                        </li>
+                        <li>
+                            Overall survival months: We see that this attribute is relatively identically distributed across all subtypes (skewed to the left). However, for the “Basal” subtype, the number of months is uniformly distributed, indicating that patients with this type are likely to survive longer.
+                        </li>
+                        <li>
+                            Tumour size: We see that tumour size is identically distributed across all subtypes, which tells us that this attribute is independent of subtype.
+                        </li>
+                    </ul>
+                    
+
+                    <p>
+                        <u>Boxplots:</u> Boxplots provide a compact visual to assess the distribution differences between classes. In addition, it provides a visual assessment on the number of outliers and skewness of the feature. Below are the boxplots for the selected four clinical features, 'Age at Diagnosis', 'Mutation count', 'Overall survival months', and 'Tumour size'
+                    </p>
+
+                    <div style="display: flex; gap: 100px; margin-bottom: 30px;">
+                        <figure style="text-align: center; width: 33%;">
+                            <img src="figures/boxplot-age-at-diagnosis.png" style="width: 100%; height: auto;">
+                            <figcaption>Figure 5: Boxplot for Age at Diagnosis</figcaption>
+                        </figure>
+
+                        <figure style="text-align: center; width: 33%;">
+                            <img src="figures/boxplot-mutation-count.png" style="width: 100%; height: auto;">
+                            <figcaption>Figure 6: Boxplot for Mutation Count</figcaption>
+                        </figure>
+                    </div>
+
+                    <div style="display: flex; gap: 100px; margin-bottom: 30px;">
+                        <figure style="text-align: center; width: 33%;">
+                            <img src="figures/boxplot-overall-survival-months.png" style="width: 100%; height: auto;">
+                            <figcaption>Figure 7: Boxplot for Overall Survival Months</figcaption>
+                        </figure>
+
+                        <figure style="text-align: center; width: 33%;">
+                            <img src="figures/boxplot-tumour-size.png" style="width: 100%; height: auto;">
+                            <figcaption>Figure 8: Boxplot for Tumour Size</figcaption>
+                        </figure>
+                    </div>
+
+                    <p>
+                        <u>Pair Plots:</u> Pairplots can help in observing distributions of the feature and also provide spread of values based on the target classes when points are class-colored. It also provides a visual on the nature of the correlation between two features and this serves as a very important first step towards correlation handling.
+                    </p>
+
+                    <figure style="text-align: center; width: 75%; height: 75%;">
+                        <img src="figures/pairplot.png" style="width: 100%; height: auto;">
+                        <figcaption>Figure 9: Pairplots</figcaption>
+                    </figure>
+
+                    <br> <br>
+                
+                <strong> Genes Data </strong>
+
+                    <div class="pca-umap-block">
+                        <div class="pca-block">
+                            <p>
+                            <u>Principal Components Analysis (PCA):</u> As the gene-data encompasses 400+ features, the genes data is linearly reduced to 2D dimensions and colored based on the classes. This visualization helps in understanding the underlying nature of the dataset.
+                            </p>
+                            <figure>
+                            <img src="figures/pca-genes.png" alt="PCA for genes" style="width: 80%; height: auto;">
+                            <figcaption>Figure 10: Principal Components Analysis for Genes Data</figcaption>
+                            </figure>
+                        </div>
+
+                        <div class="umap-block">
+                            <p>
+                            <u>Uniform Manifold Approximation and Projection (UMAP):</u> Non-linear reduction of 400+ genes features to 2 components.
+                            </p>
+                            <figure>
+                            <img src="figures/umap-genes.png" alt="UMAP for genes" style="width: 80%; height: auto;">
+                            <figcaption>Figure 11: Uniform Manifold Approximation and Projection for Genes Data</figcaption>
+                            </figure>
+                        </div>
+                    </div>
+
+                    <p>
+                        <u> Clustering:</u> This optional step was taken to assess the quality of genes data in addition to the above visual steps. 
+                        Our motive here was to see how easy it is to separate the 7 classes we have with purely genes data in an unsupervised fashion. In this way, we can understand if there is an underlying pattern for any of the classes. If an unsupervised approach yields clusters similar to the ground truth, then a supervised model should be able to achieve a good performance as well.
+                        If few clusters actually capture the ground-truth cluster/class, then a supervised model should perform well in classifying patients of this class inherently well than other classes.
+                        In general, the number of genes present in such experiments are generally in the order of 10000. K-means, GMM, and any other distance metric based clustering algorithms may fail to perform well. 
+                        In such cases, other approaches for clustering methods such as  Leiden and Louvain clustering (graph based approaches) are highly recommended. 
+                        For simplicity, we tried K-means clustering on the 489 genes features present. Metrics such as adjusted rand index (ARI), normalized mutual information (NMI), homogeneity and completeness scores, and Fowlkes-Mallows index were computed to understand the quality of the clustering.
+                    </p>
+                    <div style="display: flex; gap: 100px; margin-bottom: 30px;">
+
+                        <figure style="text-align: center; width: 33%; height: 33%;">
+                            <img src="figures/umap-kmeans.png" style="width: 100%; height: auto;">
+                            <figcaption>Figure 12: KMeans Clustering</figcaption>
+                        </figure>
+
+                        <figure style="text-align: center; width: 33%; height: 33%;">
+                            <img src="figures/umap-gmm.png" style="width: 100%; height: auto;">
+                            <figcaption>Figure 13: GMM Clustering</figcaption>
+                        </figure>
+                    </div>
+
+                    <table border="1" cellpadding="5" cellspacing="0" style="margin-left: 30%">
+                        <caption style="caption-side: top; font-weight: bold; margin-bottom: 10px;">
+                            Table 1: Evaluation Metrics for KMeans and GMM Clustering
+                        </caption>
+                        <thead>
+                            <tr>
+                            <th>Metric</th>
+                            <th>K-Means</th>
+                            <th>GMM</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>ARI</td>
+                                <td>0.20</td>
+                                <td>0.17</td>
+                            </tr>
+                            <tr>
+                                <td>NMI</td>
+                                <td>0.30</td>
+                                <td>0.18</td>
+                            </tr>
+                            <tr>
+                                <td>Homogeneity</td>
+                                <td>0.31</td>
+                                <td>0.16</td>
+                            </tr>
+                            <tr>
+                                <td>Completeness</td>
+                                <td>0.30</td>
+                                <td>0.20</td>
+                            </tr>
+                            <tr>
+                                <td>V-Measure</td>
+                                <td>0.30</td>
+                                <td>0.18</td>
+                            </tr>
+                            <tr>
+                                <td>Fowlkes-Mallows</td>
+                                <td>0.37</td>
+                                <td>0.41</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+        </section>
+
+        <section id="feature-preprocessing">
+            <h2>Feature Pre-processing</h2>
+
+            <p>
+                A robust feature preprocessing pipeline is created to handle missing values and outlier presence. Prior to any form of feature pre-processing, the dataset was split into training and test dataset (80% development dataset and 20% testing), to avoid data leakage.
+            </p>
+
+            <strong> Clinical Data </strong>
+
+                <ol>
+                    <li>
+                        Imputation: The clinical data is a mixture of numerical (float64) and categorical (object) data types. They need to be handled separately. As clinical data is often MNAR [missing not at random] type, it can get tricky in choosing the best imputation method. Keeping this nature of MNAR data, we chose KNN imputer for numerical features and Mode imputer for categorical features.
+                    </li>
+                    <br>
+
+                    <li>
+                        Outlier Treatment: Models that heavily rely on distance metrics or linear assumptions are more sensitive to outliers than other models. It is thus advised to perform outlier treatment prior the learning process. 
+                        To reduce the ill-effects of such noisy points on the model, the pipeline designed detects outliers through inter-quartile range (IQR) method. For a given numeric feature, if a value here falls outside the range (Q1-1.5*IQR , Q3+1.5*IQR), it is treated as an outlier.
+                        If a value is below the lower limit, then it's value is augmented to lower limit and if the value is greater than the upper limit, then it is mapped to the upper limit. Such a method is referred as IQR clipping.
+                    </li>
+                    <br>
+
+                    <li>
+                        Scaling: The clinical dataset shows feature with varying magnitudes. If unscaled, features showing higher magnitudes [eg., age] can influence the model's learning over features of lower magnitudes (eg., tumor size). To overcome this unfairness, scaling of features provides an levelled ground where all features contribute to the model's learning process. In addition, the numerical stability of the model is improved.
+                        In the pipeline developed, standard scaler is employed, and it maps the current range to a new range where the mean of the data is 0 and standard deviation is 1.
+                    </li>
+                    <br>
+
+                    <li>
+                        Correlation handling: To prevent models from failing and not reaching convergence due to singularity, we remove features that show linear dependence on other features, using correlation scores.
+                    </li>
+                    <br>
+
+                    <li>
+                        One-hot encoding of categorical data: As some models can not handle string forms of data, they need to be converted into a one-hot encoded form.
+                    </li>
+
+                </ol>
+            
+            <strong> Genes Data </strong>
+                <p>
+                    As the provided mRNA scores are already in the z-scores format, no data cleaning steps were applied on them.
+                </p>
+            
+            <strong>Feature Selection using Mutual Information</strong>
+                <p>
+                    The cleaned clinical data and genes data are combined, giving us a huge number of features. Out of nearly 600 features, top 50 features were selected using the mutual information feature selector.
+                    Those features include a higher population of gene-data and few clinical columns/features. The 50 features include: '3-gene_classifier_subtype_ER+/HER2- High Prolif', '3-gene_classifier_subtype_ER-/HER2-', 'acvrl1', 'adgra2', 'ahnak', 'aph1b', 'ar', 'aurka', 'bcl2', 'bmpr1b', 'ccnb1', 'ccnd2', 'ccne1', 'cdc25a', 'cdk1', 'cdk6', 'chek1', 'cyb5a', 'e2f2', 'e2f3', 'e2f4', 'e2f7', 'egfr', 'er_status_Negative', 'er_status_Positive', 'er_status_measured_by_ihc_Negative', 'er_status_measured_by_ihc_Positve', 'erbb2', 'erbb3', 'fancd2', 'gata3', 'hsd17b4', 'igf1r', 'integrative_cluster_10', 'kit', 'lama2', 'lfng', 'mapt', 'mmp12', 'mmp7', 'notch1', 'npnt', 'nras', 'nrip1', 'plagl1', 'pr_status_Positive', 'srd5a1', 'tgfb3', 'tgfbr2', 'ttyh1'
+                </p>
+
+        </section>
+
+        <section id="model-building">
+            <h2>Model Building</h2>
+
+                <strong> Linear Models </strong>
+
+                    <ul>
+                        <li>
+                            Logistic Regression
+                        </li>
+                    </ul>
+                
+                <strong> Tree-based Models </strong>
+
+                    <ul>
+                        <li>
+                            Decision Tree
+                        </li>
+                        <br>
+
+                        <li>
+                            Random Forest
+                        </li>
+                        <br>
+
+                        <li>
+                            Gradient-boosted Decision Trees
+                        </li>
+                    </ul>
+                
+                <strong> Kernel-based Models </strong>
+
+                    <ul>
+                        <li>
+                            Support Vector Machine
+                        </li>
+                    </ul>
+        </section>
+
+        <section id="metrics">
+            <h2>Evaluation Metrics</h2>
+
+                <ul>
+                    <li>
+                        AUROC
+                    </li>
+                    <br>
+
+                    <li>
+                        Precision
+                    </li>
+                    <br>
+
+                    <li>
+                        Recall
+                    </li>
+                    <br>
+
+                    <li>
+                        F1-Score
+                    </li>
+                    <br>
+
+                    <li>
+                        Confusion Matrix
+                    </li>
+                </ul>
+        
+        <section id="explainability">
+            <h2>Model Explainability</h2>
+                <ul>
+                    <li>
+                       Logistic regression: Using coefficients (magnitude and direction) to understand the contribution of each feature to the final prediction
+                    </li>
+                    <br>
+
+                    <li>
+                       Tree-based models: Using the inbuilt ‘feature_importance’ function, we can understand the contribution of each feature to the final prediction
+
+                    </li>
+                    <br>
+
+                    <li>
+                       SHAP analysis: A game-theory based, model-agonistic tool to provide a overview on the contributions of the features to the final prediction
+                    </li>
+                </ul>
+        
+        <section id="discussion">
+            <h2> Discussion</h2>
+
+                <h3> Exploratory Data Analysis</h3>
+
+                <ol>
+                    <li>
+                       <u> UMAP vs PCA Visualization</u> 
+                       <ul>
+                            <li> UMAP showed much better separation of classes than PCA.</li>
+                       </ul>
+                    </li>
+                    <br>
+                    <div style="margin-left: 40px;">
+                        <strong> Interpretation: </strong>
+
+                            <ul>
+                                <li>The data is non-linearly separable in its raw high-dimensional space</li>
+                                <li>Linear techniques like PCA fail to capture the complex structure</li>
+                            </ul>
+                        <br>
+                    </div>
+
+                    <li>
+                       <u> Clustering Before Supervised Learning</u>
+                       <ul>
+                            <li> Applied unsupervised clustering to explore inherent separability.</li>
+                            <li> Compared clusters (generated without label knowledge) to true class labels.</li>
+                            <li> Class 'Basal' cluster in K-means clustering is close to ground truth when we see the UMAP colored with k-means clusters vs groud truth </li>
+                       </ul>
+                    </li>
+                    <br>
+
+                    <div style="margin-left: 40px;">
+                        <strong> Interpretation: </strong>
+
+                            <ul>
+                                <li>There is an underlying, intrinsic pattern in the data for at least class 'Basal'</li>
+                                <li>Since class 'Basal' aligned naturally with data structure, it means class Basal datapoints emerge even without supervision.</li>
+                                <li>For this class, a supervised model should perform well, as separability exists inherently.</li>
+                            </ul>
+                        <br>
+                    </div>
+
+                    <li>
+                       <u> K-Means vs GMM Performance </u>
+                       <ul>
+                            <li> K-Means performed better than GMM in clustering alignment with ground truth.</li>
+                            <li> GMM, which allows flexible, elliptical clusters, did not outperform the simpler, distance-based K-Means.</li>
+                       </ul>
+                    </li>
+                    <br>
+                    <div style="margin-left: 40px;">
+                        <strong> Interpretation: </strong>
+
+                            <ul>
+                                <li>Cluster structure is compact, symmetric, and distance-driven rather than elongated or highly irregular</li>
+                                <li>Euclidean distance reflects meaningful class similarity, which means supervised models that use euclidean distance should do well.</li>
+                            </ul>
+                    </div>
+                </ol>
+
+                <div id = "gene-data-understanding" style="margin-left: 40px;">
+                    <h4> Overall Understanding of the genes-data </h4>
+
+                        <ol>
+                            <li>Non-linear structure is present, detected via UMAP's superior visualization.</li>
+                            <li>Partial intrinsic class separation (class 'Basal') is evident from unsupervised clustering aligning with some ground truth labels.</li>
+                            <li>Distance-based relationships dominate, supported by K-Means outperforming GMM.</li>
+                            <li>There is potential for supervised learning success, especially for clearly separable classes.</li>
+                            <li>Classes with poor separation in clustering may require more sophisticated, possibly non-linear models for effective classification.</li>
+                        </ol>
+                </div>
+
+                <div id = "strategic-takeaways" style="margin-left: 40px;">
+                
+                    <h4> Strategic Takeaways </h4>
+
+                        <ol>
+                            <li>Explore non-linear supervised models (e.g., kernel SVM, tree-based ensembles, neural networks).</li>
+                            <li>Distance-based approaches like k-NN may work well given the structure.</li>
+                            <li>Focus on classes with poor unsupervised separation for targeted feature engineering or model optimization.</li>
+                        </ol>
+                </div>
+
+                
+
+                <h3> Models </h3>
+
+                    <ol>
+                        <li>
+                            <strong> Logistic Regression </strong> 
+                                
+                                <ul>
+                                    <br>
+                                    <li>
+                                        <u>Hyperparameters</u>: 
+
+                                        <ol type="a">
+                                            <br>
+                                            <li>
+                                                Penalty: Type of regularization (L1, L2, or Elasticnet).
+                                            </li>
+                                            <li>
+                                                Solver : Optimization algorithm used to fit the model (e.g., liblinear, saga)
+                                            </li>
+                                            <li>
+                                                C: Inverse of regularization strength (smaller values show stronger regularization)
+                                            </li>
+                                            <li>
+                                                Tolerance: Threshold for stopping the optimization loop
+                                            </li>
+                                            <li>
+                                                Fit Intercept: Whether to use a non-zero intercept term
+                                            </li>
+                                            <li>
+                                                Max iter: Maximum number of iterations allowed during the optimization process
+                                            </li>
+                                            <li>
+                                                Multi-class: Method chosen for multi-class classification ('ovr' which builds multiple binary classifiers, 'multinomial' which uses softmax function)
+                                            </li>
+                                        </ol>
+
+                                        <table class="logistic-regression-hyperparam-table">
+                                            <!-- <caption>Hyperparameter Settings</caption> -->
+                                            <tr>
+                                                <th>Hyperparameter</th>
+                                                <th>Chosen Value</th>
+                                            </tr>
+                                            <tr>
+                                                <td>Penalty</td>
+                                                <td>L2</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Solver</td>
+                                                <td>Newton-cg</td>
+                                            </tr>
+                                            <tr>
+                                                <td>C</td>
+                                                <td>0.0464</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Tolerance</td>
+                                                <td>0.0001</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Fit Intercept</td>
+                                                <td>TRUE</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Max Iter</td>
+                                                <td>1000</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Multi-class</td>
+                                                <td>Multinomial</td>
+                                            </tr>
+                                        </table>
+                                    </li>
+
+                                    <br>
+                                    <li>
+                                        <u>Obtained metrics</u>: The model displays satisfactory results, with an overall testing AUROC of 0.949 and overall testing accuracy of 76%. The model shows high F1 scores per class (except class 'Normal'), macro aggregated F1 score  and weighted F1 score, thus showing good discriminatory power. The class 'Normal' shows the lowest F1 score. Upon studying the confusion matrix, the model seems to misclassify 'Normal' cases as 'LumA', 'Claudin-low' or 'Her2'. Additionally, the model misclassifies 'LumA' instances as either 'Normal' or 'LumB'. 
+                                    </li>
+                            
+                                    <div class="logistic-regression-metrics-container">
+                                        <figure>
+                                            <img src="figures/logistic-regression-roc-curves.jpeg" alt="ROC curves">
+                                        </figure>
+
+                                        <figure>
+                                            <img src="figures/logistic-regression-confusion-matrix.png" alt="Confusion matrix">
+                                        </figure>
+
+                                        <div class="table-wrapper">
+                                            <table class="logistic-regression-classification-report">
+                                            <caption>Classification Report (Weighted AUROC: 0.9475)</caption>
+                                            <thead>
+                                                <tr>
+                                                <th>Class</th>
+                                                <th>Precision</th>
+                                                <th>Recall</th>
+                                                <th>F1-Score</th>
+                                                <th>Support</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr><td>Basal</td><td>0.85</td><td>0.78</td><td>0.82</td><td>37</td></tr>
+                                                <tr><td>Her2</td><td>0.67</td><td>0.78</td><td>0.72</td><td>51</td></tr>
+                                                <tr><td>LumA</td><td>0.85</td><td>0.73</td><td>0.78</td><td>127</td></tr>
+                                                <tr><td>LumB</td><td>0.73</td><td>0.80</td><td>0.77</td><td>92</td></tr>
+                                                <tr><td>Normal</td><td>0.56</td><td>0.61</td><td>0.58</td><td>31</td></tr>
+                                                <tr><td>Claudin-low</td><td>0.82</td><td>0.79</td><td>0.81</td><td>39</td></tr>
+                                                <tr class="highlight"><td>Accuracy</td><td colspan="3">0.76</td><td>377</td></tr>
+                                                <tr class="highlight"><td>Macro Avg</td><td>0.75</td><td>0.75</td><td>0.75</td><td>377</td></tr>
+                                                <tr class="highlight"><td>Weighted Avg</td><td>0.77</td><td>0.76</td><td>0.76</td><td>377</td></tr>
+                                            </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                    <li>
+                                        <u>Model Explainability</u>:
+                                        
+                                        <ul> 
+                                            <br>
+                                            <li>
+                                                Coefficients/Feature importance for all classes: The plots below show the top 10 contributing features based on the absolute value of the coefficients. Using the coefficients plots obtained here, we will inspect the top 6 features and study if they agree with the clinical literature. In our study, we will dive deeper into model interpretation for only class 'Basal'. Basal-like subtype is the most aggressive and has the poorest prognosis among the breast cancer subtypes listed, with a 58% 5-year overall survival and frequent relapses (17). 
+                                            </li>
+                                            <div style="display: flex; gap: 100px; margin-bottom: 30px;justify-content: center">
+                                                <figure style="text-align: center; width: 75%; height: 75%;">
+                                                    <img src="figures/logistic-regression-most-informative-features.png" style="width: 100%; height: auto;">
+                                                    <figcaption>Figure 14: Logistic Regression Top 10 Most Informative Features Per Class</figcaption>
+                                                </figure>
+                                            </div>
+
+                                            <li>
+                                                Detailed study for class 'Basal' with plots and discussion/interpretation: Here, we examine the coefficients' signs and the nature of the features and see if they agree with clinical literature. To be specific, if the top feature is a gene, we observe if the coefficient sign for the gene is positive or not if the gene should be upregulated for class 'Basal' and coefficient sign is negative if the gene should be downregulated for class 'Basal'. If the top feature is a clinical feature, then we study clinical feature's nature (whether it's directly proportional to the aggressiveness of the cancer or inversely proportional). 
+                                            </li>
+                                            <br>
+
+                                            <table class="gene-table">
+                                                <caption>Gene-Level Insights with Clinical Relevance</caption>
+                                                <thead>
+                                                    <tr>
+                                                    <th>Gene</th>
+                                                    <th>Coefficient Sign</th>
+                                                    <th>Role / Other Relevant Info</th>
+                                                    <th>Coefficients' signs Matches Clinical Literature?</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                    <td>nrip1</td>
+                                                    <td>Negative</td>
+                                                    <td>
+                                                        High expression in Lum subtypes, supporting cell proliferation. Although not among the top ten genes in LumA/B in our model, they have the largest positive coefficients in these subtypes compared to the other subtypes (12).
+                                                    </td>
+                                                    <td>Yes. Known to be lowly expressed in basal-like subtype (12).</td>
+                                                    </tr>
+                                                    <tr>
+                                                    <td>kit</td>
+                                                    <td>Positive</td>
+                                                    <td>
+                                                        Tyrosine kinase growth factor, co-expressed with EGFR in basal-like subtypes (13).
+                                                    </td>
+                                                    <td>Yes. Overexpressed in basal-like subtype (13).</td>
+                                                    </tr>
+                                                    <tr>
+                                                    <td>tgfbr2</td>
+                                                    <td>Negative</td>
+                                                    <td>
+                                                        Tumor suppressor in normal tissue (14). <br>
+                                                        Small, almost zero coefficient in “Normal” class in our model.
+                                                    </td>
+                                                    <td>
+                                                        Yes. Low expression in basal-like tissue compared to normal tissue, but it's also lowly expressed in other subtypes (14).
+                                                    </td>
+                                                    </tr>
+                                                    <tr>
+                                                    <td>nptnt</td>
+                                                    <td>Negative</td>
+                                                    <td>
+                                                        Extracellular matrix protein involved in bone formation whose downregulation reduces metastatic spread to the bone (15).
+                                                    </td>
+                                                    <td> Not known to be a marker but consistent with our expression data (box-plots).</td>
+                                                    </tr>
+                                                    <tr>
+                                                    <td>egfr</td>
+                                                    <td>Positive</td>
+                                                    <td>
+                                                        Tyrosine kinase growth factor. Correlated with poor survival rate and frequent relapses. Overactivation results in aberrant signaling and uncontrolled cell growth and proliferation (16,17).
+                                                    </td>
+                                                    <td>Yes. Known to be overexpressed.</td>
+                                                    </tr>
+                                                    <tr>
+                                                    <td>bmpr1b</td>
+                                                    <td>Negative</td>
+                                                    <td>
+                                                        Low expression is associated with poor prognosis and increases the proliferation of breast cancer cells (18).
+                                                    </td>
+                                                    <td>Yes. Know to be downregulated in basal-like subtype compared to other breast cancer subtypes (19).</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                    <td>chek1</td>
+                                                    <td>Positive</td>
+                                                    <td>
+                                                        Promotes epithelial to mesenchymal transition (EMT) and enhances migration and invasion ability. Correlated with poor survival (20).
+                                                    </td>
+                                                    <td>Yes. Known to be upregulated and a marker for basal-like subtypes (20)</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+
+                                            <div style="display: flex; gap: 100px; margin-bottom: 30px;">
+                                                <figure style="text-align: center; width: 75%; height: 75%;">
+                                                    <img src="figures/logistic-regression-boxplots.jpeg" style="width: 100%; height: auto;">
+                                                    <figcaption>Figure 15: Logistic Regression Boxplots for Top 6 Genes</figcaption>
+                                                </figure>
+                                            </div>
+
+                                            The coefficient signs for the top features (here, all 6 features are genes) and the nature of those genes (upregulated or downregulated) were consistent, showing that the model captures meaningful patterns and provides the predicted probability. The top genes with the largest coefficients are consistent with clinical data, i.e., genes with large positive coefficients are known to be upregulated, while those with large negative coefficients are known to be downregulated. The exception was NPNT, whose large negative coefficient is not backed by clinical data, which does not describe any differential expression of this gene in basal-like subtype.
+                                        </ul>
+                                    </li>
+
+                                </ul>
+                        </li>
+                        <br>
+
+                        <li>
+                            <strong> Decision Tree </strong>
+                            <ul>
+                                <br>
+                                <li>
+                                    <u>Hyperparameters</u>:
+                                    
+
+                                    <ol type="a">
+                                        <br>
+                                        <li>
+                                            Max Depth: Maximum depth of the tree allowed
+                                        </li>
+
+                                        <li>
+                                            Min Samples Split: Minimum number of samples required to split the node
+                                        </li>
+
+                                        <li>
+                                            Min Sample Leaf: Minimum number of samples required to be present in the leaf nodes post splitting
+                                        </li>
+
+                                        <li>
+                                            Max features: The max number of features to be used during splitting (e.g., integer, sqrt, log2)
+                                        </li>
+
+                                        <li>
+                                            Criterion: Function used to measure the quality of a split (e.g., gini, entropy)
+                                        </li>
+                                    </ol>
+                                    <table class="decision-tree-hyperparam-table">
+                                        <!-- <caption>Hyperparameter Settings</caption> -->
+                                        <tr>
+                                            <th>Hyperparameter</th>
+                                            <th>Chosen Value</th>
+                                        </tr>
+                                        <tr>
+                                            <td>Max Depth</td>
+                                            <td>5</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Min Samples Split</td>
+                                            <td>20</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Min Sample Leaf</td>
+                                            <td>2</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Max Featres</td>
+                                            <td>sqrt</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Criterion</td>
+                                            <td>gini</td>
+                                        </tr>
+                                    </table>
+                                </li>
+
+                                <br>
+                                <li>
+                                        <u>Obtained metrics</u>:  The model displays poor results, with an overall testing AUROC of 0.84 and overall testing accuracy of just 52%. From the confusion matrix, we see that the model misclassifies 'LumA' instances as 'LumB' or 'Normal'. Moreover, a large number of 'LumB' instances are misclassified as 'Her2', 'LumA' or 'Normal'.
+                                </li>
+                            
+                                    <div class="decision-tree-metrics-container">
+                                        <figure>
+                                            <img src="figures/decision-tree-roc-curves.jpeg" alt="ROC curves">
+                                        </figure>
+
+                                        <figure>
+                                            <img src="figures/decision-tree-confusion-matrix.png" alt="Confusion matrix">
+                                        </figure>
+
+                                        <div class="table-wrapper">
+                                            <table class="decision-tree-classification-report">
+                                            <caption>Classification Report (Weighted AUROC: 0.9475)</caption>
+                                            <thead>
+                                                <tr>
+                                                <th>Class</th>
+                                                <th>Precision</th>
+                                                <th>Recall</th>
+                                                <th>F1-Score</th>
+                                                <th>Support</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr><td>Basal</td><td>0.56</td><td>0.54</td><td>0.55</td><td>37</td></tr>
+                                                <tr><td>Her2</td><td>0.50</td><td>0.63</td><td>0.56</td><td>51</td></tr>
+                                                <tr><td>LumA</td><td>0.70</td><td>0.40</td><td>0.51</td><td>127</td></tr>
+                                                <tr><td>LumB</td><td>0.63</td><td>0.63</td><td>0.63</td><td>92</td></tr>
+                                                <tr><td>Normal</td><td>0.19</td><td>0.42</td><td>0.26</td><td>31</td></tr>
+                                                <tr><td>Claudin-low</td><td>0.48</td><td>0.54</td><td>0.51</td><td>39</td></tr>
+                                                <tr class="highlight"><td>Accuracy</td><td colspan="3">0.52</td><td>377</td></tr>
+                                                <tr class="highlight"><td>Macro Avg</td><td>0.51</td><td>0.53</td><td>0.50</td><td>377</td></tr>
+                                                <tr class="highlight"><td>Weighted Avg</td><td>0.58</td><td>0.52</td><td>0.53</td><td>377</td></tr>
+                                            </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <strong> Random Forest </strong>
+                            <ul>
+                                <br>
+                                <li>
+                                    <u>Hyperparameters</u>:
+                                    
+
+                                    <ol type="a">
+                                        <br>
+                                        <li>
+                                            N Estimators: Number of trees/estimators in the forest
+                                        </li>
+
+                                        <li>
+                                            Min Samples Split: Minimum number of samples required to split the node
+                                        </li>
+
+                                        <li>
+                                            Min Sample Leaf: Minimum number of samples required to be present in the leaf nodes post splitting
+                                        </li>
+
+                                        <li>
+                                            Max features: The max number of features to be used during splitting (e.g., integer, sqrt, log2)
+                                        </li>
+
+                                        <li>
+                                            Max Depth: Maximum depth of the tree allowed
+                                        </li>
+
+                                        <li>
+                                            Class weights: Weights assigned to different classes, controls the level of importance to be paid to each class. When set to balanced, the values are inversely proportional to their frequencies
+                                        </li>
+
+                                        <li>
+                                            Bootstrap: Whether or not to use bootstrapped samples
+                                        </li>
+
+                                        <li>
+                                            OOB score: To use out-of-bag samples to assess the generalizability
+                                        </li>
+                                    </ol>
+                                    <table class="random-forest-hyperparam-table">
+                                        <!-- <caption>Hyperparameter Settings</caption> -->
+                                        <tr>
+                                            <th>Hyperparameter</th>
+                                            <th>Chosen Value</th>
+                                        </tr>
+                                        <tr>
+                                            <td>N Estimators</td>
+                                            <td>1000</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Min Samples Split</td>
+                                            <td>5</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Min Sample Leaf</td>
+                                            <td>2</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Max Featres</td>
+                                            <td>log2</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Max Depth</td>
+                                            <td>5</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Class Weights</td>
+                                            <td>balanced</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Bootstrap</td>
+                                            <td>true</td>
+                                        </tr>
+                                        <tr>
+                                            <td>OOB Score</td>
+                                            <td>true</td>
+                                        </tr>
+                                    </table>
+                                </li>
+
+                                <br>
+                                <li>
+                                        <u>Obtained metrics</u>:  The model displays satisfactory results, with an overall testing AUROC of 0.95 and overall testing accuracy of 77%. The model shows high F1 scores per class (except class 'Normal'), macro aggregated F1 score and weighted F1 score, thus showing good discriminatory power. The class 'Normal' shows the lowest F1 score. Upon studying the confusion matrix, we see that the model misclassifies 'Normal' cases as 'LumA'.
+                                </li>
+                            
+                                    <div class="random-forest-metrics-container">
+                                        <figure>
+                                            <img src="figures/random-forest-roc-curves.jpeg" alt="ROC curves">
+                                        </figure>
+
+                                        <figure>
+                                            <img src="figures/random-forest-confusion-matrix.png" alt="Confusion matrix">
+                                        </figure>
+
+                                        <div class="table-wrapper">
+                                            <table class="random-forest-classification-report">
+                                            <caption>Classification Report (Weighted AUROC: 0.9475)</caption>
+                                            <thead>
+                                                <tr>
+                                                <th>Class</th>
+                                                <th>Precision</th>
+                                                <th>Recall</th>
+                                                <th>F1-Score</th>
+                                                <th>Support</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr><td>Basal</td><td>0.87</td><td>0.73</td><td>0.79</td><td>37</td></tr>
+                                                <tr><td>Her2</td><td>0.69</td><td>0.73</td><td>0.70</td><td>51</td></tr>
+                                                <tr><td>LumA</td><td>0.74</td><td>0.89</td><td>0.81</td><td>127</td></tr>
+                                                <tr><td>LumB</td><td>0.78</td><td>0.86</td><td>0.82</td><td>92</td></tr>
+                                                <tr><td>Normal</td><td>1.00</td><td>0.19</td><td>0.32</td><td>31</td></tr>
+                                                <tr><td>Claudin-low</td><td>0.82</td><td>0.69</td><td>0.75</td><td>39</td></tr>
+                                                <tr class="highlight"><td>Accuracy</td><td colspan="3">0.77</td><td>377</td></tr>
+                                                <tr class="highlight"><td>Macro Avg</td><td>0.82</td><td>0.68</td><td>0.70</td><td>377</td></tr>
+                                                <tr class="highlight"><td>Weighted Avg</td><td>0.79</td><td>0.77</td><td>0.75</td><td>377</td></tr>
+                                            </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <strong> Gradient Boosted Decision Trees (GBDT) </strong>
+                            <ul>
+                                <br>
+                                <li>
+                                    <u>Hyperparameters</u>:
+                                    
+
+                                    <ol type="a">
+                                        <br>
+                                        <li>
+                                            Learning Rate: Shrinks the contribution of each tree
+                                        </li>
+
+                                        <li>
+                                            N Estimators: Number of boosting stages
+                                        </li>
+
+                                        <li>
+                                            Max Depth: Maximum depth of the tree allowed, limits individual tree depth to prevent overfitting
+                                        </li>
+
+                                        <li>
+                                            Min Samples Split: Minimum number of samples required to split the node
+                                        </li>
+
+                                        <li>
+                                            Min Sample Leaf: Minimum number of samples required to be present in the leaf nodes post splitting
+                                        </li>
+
+                                        <li>
+                                            Max Features: The max number of features to be used during splitting (e.g., integer, sqrt, log2)
+                                        </li>
+
+                                        <li>
+                                            Subsample: Fraction of samples used per tree during training to introduce randomness. If this value is less than 1, then stochastic gradient boosting is used.
+                                        </li>
+
+                                        <li>
+                                            Loss: Log function to be optimized (e.g., log-loss, exponential)
+                                        </li>
+
+                                        
+                                    </ol>
+                                    <table class="gbdt-hyperparam-table">
+                                        <!-- <caption>Hyperparameter Settings</caption> -->
+                                        <tr>
+                                            <th>Hyperparameter</th>
+                                            <th>Chosen Value</th>
+                                        </tr>
+                                        <tr>
+                                            <td>Learning Rate</td>
+                                            <td>0.1</td>
+                                        </tr>
+                                        <tr>
+                                            <td>N Estimators</td>
+                                            <td>100</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Max Depth</td>
+                                            <td>5</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Min Samples Split</td>
+                                            <td>2</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Min Sample Leaf</td>
+                                            <td>4</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Max Features</td>
+                                            <td>log2</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Subsample</td>
+                                            <td>0.9</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Loss </td>
+                                            <td>log-loss</td>
+                                        </tr>
+                                    </table>
+                                </li>
+
+                                <br>
+                                <li>
+                                        <u>Obtained metrics</u>:  The model displays satisfactory results, with an overall testing AUROC of 0.94 and overall testing accuracy of 77%. The model shows high F1 scores per class (except class 'Normal'), macro aggregated F1 score and weighted F1 score, thus showing good discriminatory power. The class 'Normal' shows the lowest F1 score. Upon studying the confusion matrix, we see that like the other models, the GBDT model also misclassifies 'Normal' cases as 'LumA'.
+                                </li>
+                            
+                                    <div class="gbdt-metrics-container">
+                                        <figure>
+                                            <img src="figures/gbdt-roc-curves.jpeg" alt="ROC curves">
+                                        </figure>
+
+                                        <figure>
+                                            <img src="figures/gbdt-confusion-matrix.png" alt="Confusion matrix">
+                                        </figure>
+
+                                        <div class="table-wrapper">
+                                            <table class="gbdt-classification-report">
+                                            <caption>Classification Report (Weighted AUROC: 0.9475)</caption>
+                                            <thead>
+                                                <tr>
+                                                <th>Class</th>
+                                                <th>Precision</th>
+                                                <th>Recall</th>
+                                                <th>F1-Score</th>
+                                                <th>Support</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr><td>Basal</td><td>0.90</td><td>0.70</td><td>0.79</td><td>37</td></tr>
+                                                <tr><td>Her2</td><td>0.70</td><td>0.78</td><td>0.74</td><td>51</td></tr>
+                                                <tr><td>LumA</td><td>0.76</td><td>0.86</td><td>0.81</td><td>127</td></tr>
+                                                <tr><td>LumB</td><td>0.77</td><td>0.82</td><td>0.79</td><td>92</td></tr>
+                                                <tr><td>Normal</td><td>0.67</td><td>0.32</td><td>0.43</td><td>31</td></tr>
+                                                <tr><td>Claudin-low</td><td>0.83</td><td>0.74</td><td>0.78</td><td>39</td></tr>
+                                                <tr class="highlight"><td>Accuracy</td><td colspan="3">0.77</td><td>377</td></tr>
+                                                <tr class="highlight"><td>Macro Avg</td><td>0.77</td><td>0.70</td><td>0.72</td><td>377</td></tr>
+                                                <tr class="highlight"><td>Weighted Avg</td><td>0.77</td><td>0.77</td><td>0.76</td><td>377</td></tr>
+                                            </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <strong> Support Vector Machine (SVM) </strong>
+                            <ul>
+                                <br>
+                                <li>
+                                    <u>Hyperparameters</u>:
+                                    
+
+                                    <ol type="a">
+                                        <br>
+                                        <li>
+                                            Kernel: Type of kernel used (linear, RBF, etc.)
+                                        </li>
+
+                                        <li>
+                                            C: Regularization parameter, where the strength is inversely proportional to the value
+                                        </li>
+
+                                        <li>
+                                            Gamma: Kernel coefficient for RBF, poly, and sigmoid [not applicable for 'linear' kernel]
+                                        </li>
+
+                                        <li>
+                                            Tolerance: Threshold for stopping criteria
+                                        </li>
+
+                                        <li>
+                                            Degree: Degree of polynomial to be used if kernel is 'poly'
+
+                                        </li>
+
+                                        <li>
+                                            Coef0: Used when kernel is either 'poly' or 'sigmoid', an independent term for the kernel
+                                        </li>
+
+                                        <li>
+                                            Probability: Flag to enable to disable generation of predicted probabilities
+                                        </li>
+
+                                        
+                                    </ol>
+                                    <table class="svm-hyperparam-table">
+                                        <!-- <caption>Hyperparameter Settings</caption> -->
+                                        <tr>
+                                            <th>Hyperparameter</th>
+                                            <th>Chosen Value</th>
+                                        </tr>
+                                        <tr>
+                                            <td>Kernel</td>
+                                            <td>RBF</td>
+                                        </tr>
+                                        <tr>
+                                            <td>C</td>
+                                            <td>10</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Gamma</td>
+                                            <td>0.001</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Tolerance</td>
+                                            <td>0.001</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Degree</td>
+                                            <td>2</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Coef0</td>
+                                            <td>0.1</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Probability</td>
+                                            <td>True</td>
+                                        </tr>
+                                    </table>
+                                </li>
+
+                                <br>
+                                <li>
+                                        <u>Obtained metrics</u>:  The model displays satisfactory results, with an overall testing AUROC of 0.95 and overall testing accuracy of 76%. The model shows high F1 scores per class (except class 'Normal'), macro aggregated F1 score and weighted F1 score, thus showing good discriminatory power. The class 'Normal' shows the lowest F1 score. Upon studying the confusion matrix, the model misclassifies 'LumA' instances as either 'Normal' or 'LumB'.
+                                </li>
+                            
+                                    <div class="svm-metrics-container">
+                                        <figure>
+                                            <img src="figures/svm-roc-curves.jpeg" alt="ROC curves">
+                                        </figure>
+
+                                        <figure>
+                                            <img src="figures/svm-confusion-matrix.png" alt="Confusion matrix">
+                                        </figure>
+
+                                        <div class="table-wrapper">
+                                            <table class="svm-classification-report">
+                                            <caption>Classification Report (Weighted AUROC: 0.9475)</caption>
+                                            <thead>
+                                                <tr>
+                                                <th>Class</th>
+                                                <th>Precision</th>
+                                                <th>Recall</th>
+                                                <th>F1-Score</th>
+                                                <th>Support</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr><td>Basal</td><td>0.82</td><td>0.76</td><td>0.79</td><td>37</td></tr>
+                                                <tr><td>Her2</td><td>0.66</td><td>0.78</td><td>0.71</td><td>51</td></tr>
+                                                <tr><td>LumA</td><td>0.86</td><td>0.75</td><td>0.80</td><td>127</td></tr>
+                                                <tr><td>LumB</td><td>0.75</td><td>0.83</td><td>0.78</td><td>92</td></tr>
+                                                <tr><td>Normal</td><td>0.53</td><td>0.58</td><td>0.55</td><td>31</td></tr>
+                                                <tr><td>Claudin-low</td><td>0.83</td><td>0.77</td><td>0.80</td><td>39</td></tr>
+                                                <tr class="highlight"><td>Accuracy</td><td colspan="3">0.76</td><td>377</td></tr>
+                                                <tr class="highlight"><td>Macro Avg</td><td>0.74</td><td>0.74</td><td>0.74</td><td>377</td></tr>
+                                                <tr class="highlight"><td>Weighted Avg</td><td>0.77</td><td>0.76</td><td>0.76</td><td>377</td></tr>
+                                            </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                <li>
+                                    <u>Model Explainability</u>:
+                                    
+                                    <ul> 
+                                        <br>
+                                        <li>
+                                            Coefficients/Feature importance for all classes: 
+                                        </li>
+                                        <div style="display: flex; gap: 100px; margin-bottom: 30px;justify-content: center">
+                                            <figure style="text-align: center; width: 75%; height: 75%;">
+                                                <img src="figures/svm-most-informative-features.png" style="width: 100%; height: auto;">
+                                                <figcaption>Figure 16: SVM Top 10 Most Informative Features Per Class</figcaption>
+                                            </figure>
+                                        </div>
+
+                                        <li>
+                                            Detailed study for class 'Basal' with plots and discussion/interpretation: 
+                                        </li>
+                                        <br>
+
+                                        <table class="gene-table">
+                                            <caption>Gene-Level Insights with Clinical Relevance</caption>
+                                            <thead>
+                                                <tr>
+                                                <th>Gene</th>
+                                                <th>Coefficient Sign</th>
+                                                <th>Role / Other Relevant Info</th>
+                                                <th>Coefficients' signs Matches Clinical Literature?</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                
+                                                <tr>
+                                                <td>bmpr1b</td>
+                                                <td>Negative</td>
+                                                <td>
+                                                Studies have shown that BMPR1B is significantly downregulated in breast cancer samples compared to normal individuals, and this downregulation is associated with a poor prognosis. BMPR1B has been used as a key biomarker to check the efficacy of treatments(5).
+                                                </td>
+                                                <td>Yes, BMPR1B is significantly downregulated in basal-like breast cancers compared to other subtypes (5).</td>
+                                                </tr>
+
+                                                <tr>
+                                                <td>tgfb3</td>
+                                                <td>Positive</td>
+                                                <td>
+                                                TGFB3 is involved in regulating cell cycle arrest, differentiation, immune modulation, and extracellular matrix dynamics. It is frequently described as having a suppressive effect against tumorigenesis in tissues like skin and breast. In normal and early-stage breast tissue, TGFB3 often functions as a tumor suppressor, promoting differentiation and maintaining epithelial integrity(6).
+                                                </td>
+                                                <td>No. TGFB3 expression is documented to be lower in basal-like compared to HER-2 and LumA/B subtypes. In addition, our expression data shows the lowest expression for TGFB3 in basal-like(7).</td>
+                                                </tr>
+
+                                                <tr>
+                                                <td>erbb2</td>
+                                                <td>Negative</td>
+                                                <td>
+                                                In basal-like breast cancer, ERBB2 is typically down regulated rather than upregulated. While ERBB2 amplification and overexpression are characteristic of other breast cancer subtypes, basal-like breast cancer is often HER2-negative, meaning it does not have high levels of the HER2 protein(8).
+                                                </td>
+                                                <td>Yes,  the sign of SHAP value and clinical literature's support that the gene is downregulated match(8).In addition, ERBB2 is the top feature for class HER2 according to the SHAP values obtained from the SVM model.</td>
+                                                </tr>
+
+                                                <tr>
+                                                <td>tgfbr2</td>
+                                                <td>Positive</td>
+                                                <td>
+                                                Loss or mutation of TGFBR2 is linked to the promotion of tumorigenesis in multiple cancers(9).
+                                                </td>
+                                                <td>No, TGFBR2 is significantly downregulated across breast cancer subtypes, including basal-like ones, compared to normal tissue(9).</td>
+                                                </tr>
+
+                                                <tr>
+                                                <td>ccne1</td>
+                                                <td>Positive</td>
+                                                <td>
+                                                CCNE1 encodes Cyclin E1, a regulatory subunit of CDK2 essential for the G1-to-S transition in the cell cycle. Overexpression leads to chromosomal instability, uncontrolled proliferation, and tumorigenesis(10).
+                                                </td>
+                                                <td>Yes, CCNE1 amplification (copy-number gains) occurs in a subset (6-34%) of basal-like/TNBC cases(11).</td>
+                                                </tr>
+
+                                                
+                                            </tbody>
+                                        </table>
+
+                                        <div style="display: flex; gap: 100px; margin-bottom: 30px;">
+                                            <figure style="text-align: center; width: 75%; height: 75%;">
+                                                <img src="figures/svm-boxplots.jpeg" style="width: 100%; height: auto;">
+                                                <figcaption>Figure 17: SVM Boxplots for Top 6 Genes</figcaption>
+                                            </figure>
+                                        </div>
+
+                                        
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ol>
+        </section>
+
+        <section id="conclusion">
+            <h2> Conclusion </h2>
+
+            <div style="display: flex; gap: 100px; margin-bottom: 30px;">
+                <figure style="text-align: center; width: 33%;">
+                    <img src="figures/conclusion-f1.png" style="width: 100%; height: auto;">
+                    <figcaption>Figure 18: F1-Scores Per Class</figcaption>
+                </figure>
+
+                <figure style="text-align: center; width: 33%;">
+                    <img src="figures/conclusion-weighted-metrics.png" style="width: 100%; height: auto;">
+                    <figcaption>Figure 19: Weighted Metrics</figcaption>
+                </figure>
+            </div>
+
+            Analysis of the METABRIC dataset shows that the breast-cancer gene-expression space is largely linearly separable, a finding supported by our PCA / UMAP projections. Among the machine learning models evaluated, a support vector machine with the radial-basis function kernel delivered the best results, with logistic regression close behind - further confirming the dataset's linear separability. Most errors were made for classes 'LumA' and 'Normal', with both support vector machines and logistic regression misclassifying at similar rates.
+
+            <br><br>
+
+            SVM was the best model according to weighted AUROC score (0.9514), with LR right behind with an AUROC score of 0.9475. DT had the lowest metrics across the board. According to the F1 per class plot, LR wins on 3 classes (Basal, Claudin-low & Normal), RF wins LumB and tied w/GBDT on LumA, and GBDT wins Her2. SVM sits firmly in the middle, and once again DT lags far behind.
+
+            <br><br>
+
+            We attribute DT's poor performance to underfitting as observed with a steep increase in training accuracy but a flat validation AUROC. This trend indicates that the model was able to capture trends in the training data, but did not generalize, and further depth of the tree would probably cause overfitting. The tree depth was very shallow, which created high bias since each split was only capable of using a small number of most evident features, limiting the ability of the model to learn complex interactions. Conversely, shallow trees (depth = 5 or less) were also applied in RF and GBDT, yet these methods performed better because they are ensemble methods. These models enabled later trees (or trees trained on other bootstrap samples) to search over other features and interactions because they combined hundreds of trees. Bootstrap sampling and feature bagging in Random Forest contributed to making it less sensitive to noise and better at generalization, and GBDT managed to turn residual errors into beneficial structure by bias-correcting trees iteratively.
+
+            <br><br>
+
+            For future work, we can work further on hyperparameter tuning our top models. In addition, the current pre-processing pipeline is one of many possibilities and there are more robust imputation methods. However, they require bettercomputational platforms and the current platform was meant not to be too computationally heavy. We could also try differnt correlation handling techniques, as well as different scaling methods. We also excluded mutation data as we already had a high number of features to data points, so future work could include these features. Despite these possibilities, our project robustly covers the best data science practices and we have generated five decent models with our top ones giving results that are consistent with clinical data.
+
+            
+        </section>
+
+
+        
+        <section id="references">
+            <h2>References</h2>
+            <ol>
+                <li>
+                    van't Veer LJ, Dai H, van de Vijver MJ, He YD, Hart AAM, Mao M, et al. Gene expression profiling predicts clinical outcome of breast cancer. Nature. 2002 Jan;415(6871):530-6.
+                </li>
+
+                <li>
+                    Curtis C, Shah SP, Chin SF, Turashvili G, Rueda OM, Dunning MJ, et al. The genomic and transcriptomic architecture of 2,000 breast tumours reveals novel subgroups. Nature. 2012 June;486(7403):346-52.
+                </li>
+
+                <li>
+                    Clarke C, Madden SF, Doolan P, Aherne ST, Joyce H, O'Driscoll L, et al. Correlating transcriptional networks to breast cancer survival: a large-scale coexpression analysis. Carcinogenesis. 2013 Oct 1;34(10):2300-8.
+                </li>
+
+                <li>
+                    Breast Cancer Gene Expression Profiles (METABRIC) [Internet]. [cited 2025 July 21]. Available from: https://www.kaggle.com/datasets/raghadalharbi/breast-cancer-gene-expression-profiles-metabric
+                </li>
+
+                <li>
+                    Azadeh M, Salehzadeh A, Ghaedi K, Talesh Sasani S. Integrated High-Throughput Bioinformatics (Microarray, RNA-Seq, and RNA Interaction) and qRT-PCR Investigation of BMPR1B Axis as a Potential Diagnostic Biomarker of Isfahan Breast Cancer. Adv Biomed Res. 2023 May 15;12:120.
+                </li>
+
+                <li>
+                    Laverty HG, Wakefield LM, Occleston NL, O'Kane S, Ferguson MWJ. TGF-β3 and cancer: A review. Cytokine Growth Factor Rev. 2009 Aug;20(4):305-17.
+                </li>
+
+                <li>
+                    Wahdan-Alaswad R, Harrell JC, Fan Z, Edgerton SM, Liu B, Thor AD. Metformin attenuates transforming growth factor beta (TGF-β) mediated oncogenesis in mesenchymal stem-like/claudin-low triple negative breast cancer. Cell Cycle. 2016 Feb 26;15(8):1046-59.
+                </li>
+
+                <li>
+                    Khan IA, Yoo BH, McPhee M, Masson O, Surette A, Dakin-Hache K, et al. ErbB2-driven downregulation of the transcription factor Irf6 in breast epithelial cells is required for their 3D growth. Breast Cancer Res BCR. 2018;20:151.
+                </li>
+
+                <li>
+                    Tan AR, Alexe G, Reiss M. Transforming growth factor-β signaling: emerging stem cell target in metastatic breast cancer? Breast Cancer Res Treat. 2009 June;115(3):453-95.
+                </li>
+
+                <li>
+                    Snoj N, Dinh P, Bedard P, Sotiriou C. Chapter 25 - Molecular Biology of Breast Cancer. In: Coleman WB, Tsongalis GJ, editors. Molecular Pathology [Internet]. San Diego: Academic Press; 2009 [cited 2025 July 20]. p. 501-17. Available from: https://www.sciencedirect.com/science/article/pii/B9780123744197000251
+                </li>
+
+                <li>
+                    Aziz D, Lee C, Chin V, Fernandez KJ, Phan Z, kConFab Investigators, et al. High cyclin E1 protein, but not gene amplification, is prognostic for basal-like breast cancer. J Pathol Clin Res. 2022 July;8(4):355-70.
+                </li>
+
+                <li>
+                    Aziz MH, Chen X, Zhang Q, DeFrain C, Osland J, Luo Y, et al. Suppressing NRIP1 inhibits growth of breast cancer cells in vitro and in vivo. Oncotarget. 2015 Oct 15;6(37):39714-24.
+                </li>
+
+                <li>
+                    Nalwoga H, Arnes JB, Wabinga H, Akslen LA. Expression of EGFR and c-kit is associated with the basal-like phenotype in breast carcinomas of African women. APMIS Acta Pathol Microbiol Immunol Scand. 2008 June;116(6):515-25.
+                </li>
+
+                <li>
+                    Chen C, Zhao KN, Masci PP, Lakhani SR, Antonsson A, Simpson PT, et al. TGFβ isoforms and receptors mRNA expression in breast tumours: prognostic value and clinical implications. BMC Cancer. 2015 Dec 24;15(1):1010.
+                </li>
+
+                <li>
+                    Wang D, Zhao C, Gao L, Wang Y, Gao X, Tang L, et al. NPNT promotes early-stage bone metastases in breast cancer by regulation of the osteogenic niche. J Bone Oncol. 2018 Sept 27;13:91-6.
+                </li>
+
+                <li>
+                    Park HS, Jang MH, Kim EJ, Kim HJ, Lee HJ, Kim YJ, et al. High EGFR gene copy number predicts poor outcome in triple-negative breast cancer. Mod Pathol. 2014 Sept 1;27(9):1212-22.
+                </li>
+
+                <li>
+                    Leidy J, Khan A, Kandil D. Basal-Like Breast Cancer: Update on Clinicopathologic, Immunohistochemical, and Molecular Features. Arch Pathol Lab Med. 2014 Jan 1;138(1):37-43.
+                </li>
+
+                <li>
+                    Bach DH, Park HJ, Lee SK. The Dual Role of Bone Morphogenetic Proteins in Cancer. Mol Ther - Oncolytics. 2018 Mar 30;8:1-13.
+                </li>
+
+                <li>
+                    Pickup MW, Hover LD, Guo Y, Gorska AE, Chytil A, Novitskiy SV, et al. Deletion of the BMP receptor BMPR1a impairs mammary tumor formation and metastasis. Oncotarget. 2015 June 10;6(26):22890-904.
+                </li>
+
+                <li>
+                    Kim HJ, Seo BG, Seo EC, Lee KM, Hwangbo C. Checkpoint Kinase 1 (CHK1) Functions as Both a Diagnostic Marker and a Regulator of Epithelial-to-Mesenchymal Transition (EMT) in Triple-Negative Breast Cancer. Curr Issues Mol Biol. 2022 Dec;44(12):5848-65.
+                </li>
+
+                <li>
+                    Morrison MM, Hutchinson K, Williams MM, Stanford JC, Balko JM, Young C, et al. ErbB3 downregulation enhances luminal breast tumor response to antiestrogens. J Clin Invest. 2013 Oct 1;123(10):4329-43.
+                </li>
+
+                <li>
+                    Miao K, Lei JH, Valecha MV, Zhang A, Xu J, Wang L, et al. NOTCH1 activation compensates BRCA1 deficiency and promotes triple-negative breast cancer formation. Nat Commun. 2020 June 26;11(1):3256.
+                </li>
+
+                <li>
+                    Chung WC, Zhang S, Challagundla L, Zhou Y, Xu K. Lunatic Fringe and p53 Cooperatively Suppress Mesenchymal Stem-Like Breast Cancer. Neoplasia. 2017 Nov 1;19(11):885-95.
+                </li>
+
+                <li>
+                    Riaz N, Idress R, Habib S, Lalani EN. Lack of Androgen Receptor Expression Selects for Basal-Like Phenotype and Is a Predictor of Poor Clinical Outcome in Non-Metastatic Triple Negative Breast Cancer. Front Oncol [Internet]. 2020 July 28 [cited 2025 July 20];10. Available from: https://www.frontiersin.org/journals/oncology/articles/10.3389/fonc.2020.01083/full
+                </li>
+
+                <li>
+                    Bronte G, Bravaccini S, Ravaioli S, Puccetti M, Scarpi E, Andreis D, et al. Androgen Receptor Expression in Breast Cancer: What Differences Between Primary Tumor and Metastases? Transl Oncol. 2018 June 18;11(4):950-6.
+                </li>
+
+                <li>
+                    Yu Q, Niu Y, Liu N, Zhang JZ, Liu TJ, Zhang RJ, et al. Expression of androgen receptor in breast cancer and its significance as a prognostic factor. Ann Oncol. 2011 June 1;22(6):1288-94.
+                </li>
+
+                <li>
+                    Xu K, Usary J, Kousis PC, Prat A, Wang DY, Adams JR, et al. Lunatic fringe deficiency cooperates with the Met/Caveolin gene amplicon to induce basal-like breast cancer. Cancer Cell. 2012 May 15;21(5):626-41.
+                </li>
+
+                <li>
+                    Voduc D, Cheang M, Nielsen T. GATA-3 expression in breast cancer has a strong association with estrogen receptor but lacks independent prognostic value. Cancer Epidemiol Biomark Prev Publ Am Assoc Cancer Res Cosponsored Am Soc Prev Oncol. 2008 Feb;17(2):365-73.
+                </li>
+
+                <li>
+                    Bai F, Zheng C, Liu X, Chan HL, Liu S, Ma J, et al. Loss of function of GATA3 induces basal-like mammary tumors. Theranostics. 2022;12(2):720-33.
+                </li>
+            </ol>
+        </section>
+
+        <section id="contributions table">
+            <h2>Contributions table</h2>
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Contribution</th>
+                </tr>
+                <tr>
+                    <td>Abhishek Vijeev</td>
+                    <td>EDA, Data pre-processing, SVM, Website</td>
+                </tr>
+                <tr>
+                    <td>Celine M Al-Noubani</td>
+                    <td>EDA, Data pre-processing, Figures, Presentation</td>
+                </tr>
+                <tr>
+                    <td>FNU Naga Nishkala</td>
+                    <td>EDA, Data pre-processing, GBDT, DT</td>
+                </tr>
+                <tr>
+                    <td>Luis Andrés Casavilca</td>
+                    <td>Logistic Regression, Random Forest, References</td>
+                </tr>
+                <tr>
+                    <td>Nikhil Sundaram</td>
+                    <td>Logistic Regression, Random Forest</td>
+                </tr>
+            </table>
+        </section>
+
+        <p><a href="ML_Project_Gantt.xlsx" download  style="font-weight: bold;">Gantt chart</a></p>
+
+        <section id="appendix">
+            <h2>Appendix</h2>
+
+            <h3> Model Explainability </h3>
+                <ul>
+                    <li> 
+                        Decision Tree
+
+                        <ul> 
+                            <br>
+                            <li>
+                                Coefficients/Feature importance for all classes:
+                            </li>
+                            <div style="display: flex; gap: 100px; margin-bottom: 30px;justify-content: center">
+                                <figure style="text-align: center; width: 75%; height: 75%;">
+                                    <img src="figures/decision-tree-most-informative-features.png" style="width: 100%; height: auto;">
+                                    <figcaption>Figure 20: Decision Tree Top 10 Most Informative Features Per Class</figcaption>
+                                </figure>
+                            </div>
+
+                            <li>
+                                Detailed study for class 'Basal' with plots and discussion/interpretation:
+                            </li>
+                            <br>
+
+                            <table class="gene-table">
+                                <caption>Gene-Level Insights with Clinical Relevance</caption>
+                                <thead>
+                                    <tr>
+                                    <th>Gene</th>
+                                    <th>Coefficient Sign</th>
+                                    <th>Role / Other Relevant Info</th>
+                                    <th>Coefficients' signs Matches Clinical Literature?</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                    <td>erbb3</td>
+                                    <td>Negative</td>
+                                    <td>
+                                        ERBB3 is highly expressed in LumA and LumB classes of breast cancer (21).
+                                    </td>
+                                    <td>No crisp clinical literature was found on the expression of ERBB3 gene in basal-like class (21).</td>
+                                    </tr>
+
+                                    <tr>
+                                    <td>notch1</td>
+                                    <td>Positive</td>
+                                    <td>
+                                       NOTCH1 is upregulated in basal class of breast cancer (22).
+                                    </td>
+                                    <td>The sign of the SHAP value is positive, and clinical literature supports that the gene is downregulated (22). Hence, there is a mismatch.</td>
+                                    </tr>
+
+                                    <tr>
+                                    <td>erbb2</td>
+                                    <td>Positive</td>
+                                    <td>
+                                       In basal-like breast cancer, ERBB2 is typically down-regulated rather than up-regulated. While ERBB2 amplification and overexpression are characteristic of other breast cancer subtypes, basal-like breast cancer is often HER2-negative, meaning it does not have high levels of the HER2 protein (8).
+                                    </td>
+                                    <td>The sign of the SHAP value is positive, and clinical literature supports that the gene is downregulated (8). Hence, there is a mismatch. ERBB2 is one of the top feature for class HER2 according to the SHAP values obtained from the DT model.</td>
+                                    </tr>
+
+                                    <tr>
+                                    <td>lfng</td>
+                                    <td>Positive</td>
+                                    <td>
+                                       In basal-like breast cancers, LFNG (Lunatic Fringe) is consistently expressed (down regulated) at a low level (23).
+                                    </td>
+                                    <td>The sign of the SHAP value is positive and clinical literature supports that the gene is downregulated (23). Hence, there is a mismatch.</td>
+                                    </tr>
+
+                                    <tr>
+                                    <td>ar</td>
+                                    <td>Negative</td>
+                                    <td>
+                                       Androgen receptor. Its role in the context of breast cancer subtypes is context-dependent. For the basal-like subtype, its expression, when present, is associated with better prognosis, while its absence is a hallmark of poor prognosis and high aggressiveness (24).
+                                    </td>
+                                    <td>Yes. It can expressed in lower levels than in HER2 or luminal subtypes (25). It can also be completely absent in basal-like subtypes (61% of basal-like cancers), with this loss of expression being associated with poor prognosis in this subtype (26).</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+
+                            <div style="display: flex; gap: 100px; margin-bottom: 30px;">
+                                <figure style="text-align: center; width: 75%; height: 75%;">
+                                    <img src="figures/decision-tree-boxplots.jpeg" style="width: 100%; height: auto;">
+                                    <figcaption>Figure 21: Decision Tree Boxplots for Top 6 Genes</figcaption>
+                                </figure>
+                            </div>
+                        </ul>
+                    </li>
+                    
+                </ul>
+
+                <ul>
+                    <li> 
+                        Random Forest
+
+                        <ul> 
+                            <br>
+                            <li>
+                                Coefficients/Feature importance for all classes:
+                            </li>
+                            <div style="display: flex; gap: 100px; margin-bottom: 30px;justify-content: center">
+                                <figure style="text-align: center; width: 75%; height: 75%;">
+                                    <img src="figures/random-forest-most-informative-features.png" style="width: 100%; height: auto;">
+                                    <figcaption>Figure 22: Random Forest Top 10 Most Informative Features Per Class</figcaption>
+                                </figure>
+                            </div>
+
+                            <li>
+                                Detailed study for class 'Basal' with plots and discussion/interpretation:
+                            </li>
+                            <br>
+
+                            <table class="gene-table">
+                                <caption>Gene-Level Insights with Clinical Relevance</caption>
+                                <thead>
+                                    <tr>
+                                    <th>Gene</th>
+                                    <th>Coefficient Sign</th>
+                                    <th>Role / Other Relevant Info</th>
+                                    <th>Coefficients' signs Matches Clinical Literature?</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr>
+                                    <td>tgfb3</td>
+                                    <td>Negative</td>
+                                    <td>
+                                       TGFB3 is involved in regulating cell cycle arrest, differentiation, immune modulation, and extracellular matrix dynamics. It is frequently described as having a suppressive effect against tumorigenesis in tissues like skin and breast. In normal and early-stage breast tissue, TGFB3 often functions as a tumor suppressor, promoting differentiation and maintaining epithelial integrity (6).
+                                    </td>
+                                    <td>Yes. However, it is worth noting that, although in later-stage cancers, including basal-like subtypes, activation of TGFB3 signaling supports epithelial-to-mesenchymal transition (EMT), which enhances invasion and metastasis, TGFB3 expression is documented to be lower in basal-like compared to HER-2 and LumA/B subtypes (14). In addition, our expression data shows the lowest expression for TGFB3 in basal-like subtype.</td>
+                                    </tr>
+
+                                    <tr>
+                                    <td>lfng</td>
+                                    <td>Negative</td>
+                                    <td>
+                                       LFNG cooperates with p53 to act as a tumor suppressor. Its deficiency or loss is associated with epithelial-to-mesenchymal transition, promoting invasion and metastasis, and it induces basal-like breast cancer through cooperation with the Met-Caveolin gene amplicon (23,27).
+                                    </td>
+                                    <td>Yes. In basal-like breast cancers, LFNG (Lunatic Fringe) is consistently expressed at a low level (down-regulated) (23).</td>
+                                    </tr>
+
+                                    <tr>
+                                    <td>gata3</td>
+                                    <td>Negative</td>
+                                    <td>
+                                       GATA3 is a transcription factor involved in the differentiation and growth of luminal epithelial cells in breast tissue. It is highly expressed in luminal breast cancer subtypes (28).
+                                    </td>
+                                    <td>Yes. GATA3 insufficiency is associated with luminal-to-basal transformation and promotes the basal-like subtype in cooperation with other tumor suppressors (29).</td>
+                                    </tr>
+
+                                    <tr>
+                                    <td>ccne1</td>
+                                    <td>Negative</td>
+                                    <td>
+                                       CCNE1 encodes Cyclin E1, a regulatory subunit of CDK2 essential for the G1-to-S transition in the cell cycle. Overexpression leads to chromosomal instability, uncontrolled proliferation, and tumorigenesis (10).
+                                    </td>
+                                    <td>No. CCNE1 amplification (copy-number gains) occurs in a subset (6-34%) of basal-like/TNBC cases, and it is associated with poor prognosis of these cancer subtypes (11).</td>
+                                    </tr>
+
+                                    <tr>
+                                    <td>egfr</td>
+                                    <td>Negative</td>
+                                    <td>
+                                       Tyrosine kinase growth factor. Correlated with poor survival rate and frequent relapses. Overactivation results in aberrant signaling and uncontrolled cell growth and proliferation (13,16).
+                                    </td>
+                                    <td>No. It is known to be upregulated in basal-like subtypes and is used, along with CK5/6,  for clinical immunohistochemical classification of basal-like subtypes (13,16).</td>
+                                    </tr>
+
+                                    <tr>
+                                    <td>ar</td>
+                                    <td>Negative</td>
+                                    <td>
+                                       Androgen receptor. Its role in the context of breast cancer subtypes is context-dependent. For the basal-like subtype, its expression, when present, is associated with better prognosis, while its absence is a hallmark of poor prognosis and high aggressiveness (24).
+                                    </td>
+                                    <td>Yes. It can expressed in lower levels than in HER2 or luminal subtypes (25). It can also be completely absent in basal-like subtypes (61% of basal-like cancers), with this loss of expression being associated with poor prognosis in this subtype (26).</td>
+                                    </tr>
+
+
+                                </tbody>
+                            </table>
+
+                            <div style="display: flex; gap: 100px; margin-bottom: 30px;">
+                                <figure style="text-align: center; width: 75%; height: 75%;">
+                                    <img src="figures/random-forest-boxplots.jpeg" style="width: 100%; height: auto;">
+                                    <figcaption>Figure 23: Random Forest Boxplots for Top 6 Genes</figcaption>
+                                </figure>
+                            </div>
+                        </ul>
+                    </li>
+                </ul>
+
+                <ul>
+                    <li> 
+                        Gradient Boosted Decision Tree
+                        <ul> 
+                            <br>
+                            <li>
+                                Coefficients/Feature importance for all classes:
+                            </li>
+                            <div style="display: flex; gap: 100px; margin-bottom: 30px;justify-content: center">
+                                <figure style="text-align: center; width: 75%; height: 75%;">
+                                    <img src="figures/gbdt-most-informative-features.png" style="width: 100%; height: auto;">
+                                    <figcaption>Figure 24: Gradient Boosted Decision Tree Top 10 Most Informative Features Per Class</figcaption>
+                                </figure>
+                            </div>
+
+                            <li>
+                                Detailed study for class 'Basal' with plots and discussion/interpretation:
+                            </li>
+                            <br>
+
+                            <table class="gene-table">
+                                <caption>Gene-Level Insights with Clinical Relevance</caption>
+                                <thead>
+                                    <tr>
+                                    <th>Gene</th>
+                                    <th>Coefficient Sign</th>
+                                    <th>Role / Other Relevant Info</th>
+                                    <th>Coefficients' signs Matches Clinical Literature?</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                    <td>nrip1</td>
+                                    <td>Positive</td>
+                                    <td>
+                                       High expression in Lum subtypes, supporting cell proliferation. Although not among the top ten genes in LumA/B in our model, they have the largest positive coefficients in these subtypes compared to the other subtypes (12).
+                                    </td>
+                                    <td>No, clinical literature shows this gene to be down-regulated, but the sign of the SHAP value is positive (12).</td>
+                                    </tr>
+
+                                    <tr>
+                                    <td>npnt</td>
+                                    <td>Negative</td>
+                                    <td>
+                                       Extracellular matrix protein involved in bone formation, whose downregulation reduces metastatic spread to the bone (15).
+                                    </td>
+                                    <td>No clinical data support differential expression in the basal-like subtype.</td>
+                                    </tr>
+
+                                    <tr>
+                                    <td>erbb2</td>
+                                    <td>Negative</td>
+                                    <td>
+                                       In basal-like breast cancer, ERBB2 is typically down-regulated rather than up-regulated. While ERBB2 amplification and overexpression are characteristic of other breast cancer subtypes, basal-like breast cancer is often HER2-negative, meaning it does not have high levels of the HER2 protein (8).
+                                    </td>
+                                    <td>The sign of the SHAP value is positive, and clinical literature supports that the gene is downregulated (8). Hence, there is a mismatch. ERBB2 is one of the top feature for class HER2 according to the SHAP values obtained from the DT model.</td>
+                                    </tr>
+
+                                    <tr>
+                                    <td>lfng</td>
+                                    <td>Positive</td>
+                                    <td>
+                                       In basal-like breast cancers, LFNG (Lunatic Fringe) is consistently expressed at a low level (23,27).
+                                    </td>
+                                    <td>The sign of the SHAP value is positive and clinical literature supports that the gene is downregulated (23,27). Hence, there is a mismatch.</td>
+                                    </tr>
+
+                                    <tr>
+                                    <td>bmpr1b</td>
+                                    <td>Negative</td>
+                                    <td>
+                                       Studies have shown that BMPR1B is significantly downregulated in breast cancer samples compared to normal individuals, and this downregulation is associated with a poor prognosis. BMPR1B has been used as a key biomarker to check the efficacy of treatments (5).
+                                    </td>
+                                    <td>Yes, the sign of SHAP value and clinical literature's support that the gene is downregulated match (5).</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <div style="display: flex; gap: 100px; margin-bottom: 30px;">
+                                <figure style="text-align: center; width: 75%; height: 75%;">
+                                    <img src="figures/gbdt-boxplots.jpeg" style="width: 100%; height: auto;">
+                                    <figcaption>Figure 25: Gradient Boosted Decision Tree Boxplots for Top 6 Genes</figcaption>
+                                </figure>
+                            </div>
+                        </ul>
+                    </li>
+                </ul>
+        </section>
+    </main>
+
+    <!-- <footer>
+        <p>Created by CS7641-ML Group 3 on June 13, 2025</p>
+    </footer> -->
+
+</body>
+</html>
