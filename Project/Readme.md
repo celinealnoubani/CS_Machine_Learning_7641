@@ -151,10 +151,13 @@ The METABRIC dataset contains gene expression profiles and clinical data from br
 | Decision Tree | 52% | 0.8379 | 0.8473 |
 
 **Key Findings:**
-- Ensemble methods (RF, GBDT) and SVM achieve comparable high performance
-- SVM with RBF kernel achieves the highest AUROC
-- Single Decision Tree significantly underperforms, highlighting the value of ensemble approaches
-- All models struggle most with the "Normal" subtype (smallest class)
+- **Best model selection based on weighted test AUROC** (not accuracy), as AUROC better captures performance across imbalanced classes
+- **SVM is the best model** with highest AUROC (0.9514), followed closely by Logistic Regression (0.9475)
+- **Data is linearly separable** as supported by UMAP visualization, explaining why simpler models perform well
+- **Per-class F1 analysis**: LR wins on 3 classes (Basal, Claudin-low, Normal); RF wins LumB; GBDT wins Her2; SVM sits in the middle across classes
+- **LumA & LumB confusion**: Both SVM and LR show high misclassification between these similar subtypes; LumA samples often misclassified as Normal
+- **Decision Tree is the weakest model**: Shallow depth leads to high bias and underfitting, using only a handful of features per split
+- **Ensemble advantage**: RF and GBDT aggregate hundreds of shallow trees, allowing feature diversity and noise smoothing that single DT lacks
 
 ---
 
