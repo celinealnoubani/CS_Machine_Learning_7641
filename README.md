@@ -1,7 +1,5 @@
 # CS 7641 - Machine Learning
 
-**Georgia Institute of Technology**
-
 ## Overview
 
 This repository contains my coursework for CS 7641 Machine Learning, covering fundamental algorithms and techniques in supervised learning, unsupervised learning, and deep learning. All implementations are built from scratch using NumPy to demonstrate understanding of the underlying mathematics.
