@@ -68,14 +68,4 @@ CS_Machine_Learning_7641/
 └── Project/
 ```
 
-## Highlights
 
-- **From-Scratch Implementations**: All core algorithms implemented without ML libraries to demonstrate deep understanding
-- **Vectorized Code**: Efficient NumPy implementations avoiding explicit loops
-- **Real-World Applications**: Image compression, fraud detection, sentiment classification
-- **Comprehensive Documentation**: Detailed README for each assignment explaining implementations
-
-## Contact
-
-Celine Alnoubani
-Georgia Institute of Technology
