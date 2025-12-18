@@ -54,6 +54,21 @@ Implemented intelligent center initialization:
   - μ_k = Σ τ(zₖ)xₙ / N_k (means)
   - Σ_k = weighted covariance matrix
 
+#### Application Functions
+| Function | Description |
+|----------|-------------|
+| `cluster_pixels_gmm(image, K)` | Image compression by clustering pixels and replacing with cluster means |
+| `density(points, pi, mu, sigma)` | Evaluate GMM density at given points |
+| `rejection_sample(...)` | Sample from GMM using rejection sampling |
+
+#### Initialization Helpers
+| Function | Description |
+|----------|-------------|
+| `create_pi()` | Initialize uniform prior probabilities (1/K) |
+| `create_mu()` | Random center initialization from data |
+| `create_mu_kmeans()` | Initialize centers using K-Means |
+| `create_sigma()` | Initialize covariance matrices as identity |
+
 #### Applications
 - **Image Compression**: Cluster pixels by RGB values, replace with cluster means
 - **Density Estimation**: Fit GMM to 2D data and sample via rejection sampling

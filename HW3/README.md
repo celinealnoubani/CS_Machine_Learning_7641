@@ -10,7 +10,7 @@ This assignment covers supervised learning fundamentals including regression mod
 - **Linear & Polynomial Regression** - Closed-form and gradient-based solutions
 - **Ridge Regression** - L2 regularization to prevent overfitting
 - **Logistic Regression** - Binary classification with gradient descent
-- **Feature Selection** - Information-theoretic feature reduction
+- **Feature Selection** - Statistical significance-based feature reduction
 
 ## Implementation Details
 
@@ -66,6 +66,9 @@ This assignment covers supervised learning fundamentals including regression mod
 | `gradient(x_aug, y, h_x)` | Gradient of loss w.r.t. parameters |
 | `accuracy(y, y_hat)` | Classification accuracy metric |
 | `fit(...)` | Training loop with gradient descent |
+| `evaluate(x, y, theta, threshold)` | Compute loss and accuracy on dataset |
+| `plot_loss()` | Visualize training and validation loss curves |
+| `plot_accuracy()` | Visualize training and validation accuracy curves |
 
 #### Training Features
 - Validation loss/accuracy tracking every 100 epochs
@@ -80,10 +83,15 @@ Finds optimal classification threshold by evaluating accuracy across threshold v
 
 ### 4. Feature Selection (`feature_reduction.py`)
 
-Implemented information-theoretic feature selection methods:
-- Mutual information computation
-- Feature ranking by relevance
-- Redundancy reduction in feature subsets
+Implemented statistical significance-based feature selection methods:
+
+| Method | Description |
+|--------|-------------|
+| `forward_selection(data, target, significance_level)` | Iteratively add features based on p-value significance |
+| `backward_elimination(data, target, significance_level)` | Iteratively remove features based on p-value significance |
+| `evaluate_features(data, y, features)` | Evaluate feature subset using OLS regression |
+
+**Approach**: Uses p-values from OLS regression to determine feature importance, adding or removing features based on statistical significance thresholds.
 
 ## Applications Demonstrated
 

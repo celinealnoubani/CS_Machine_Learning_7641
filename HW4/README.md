@@ -84,10 +84,9 @@ Parameters: β₁=0.9, β₂=0.999, ε=1e-8
 
 #### Data Augmentation (`cnn_image_transformations.py`)
 Implemented image transformations to improve model generalization:
-- Random horizontal/vertical flips
-- Random rotations
-- Color jittering
-- Random cropping
+- Random horizontal flips (probability 0.5)
+- Random rotations (-10 to 10 degrees)
+- Random affine translations (5% shift)
 
 #### Training Pipeline
 - DataLoader with batching
@@ -97,23 +96,35 @@ Implemented image transformations to improve model generalization:
 
 ### 3. Random Forest (`random_forest.py`)
 
-#### Implementation
+#### Core Implementation
 | Method | Description |
 |--------|-------------|
 | `fit(X, y)` | Train ensemble of decision trees |
 | `predict(X)` | Aggregate predictions via majority voting |
-| `grid_search(...)` | Hyperparameter optimization |
+| `bootstrapping()` | Generate bootstrap samples for each tree |
+| `OOB_score()` | Calculate out-of-bag error estimate |
+| `plot_feature_importance()` | Visualize feature importance rankings |
+
+#### AdaBoost Implementation
+| Method | Description |
+|--------|-------------|
+| `adaboost()` | Train ensemble with adaptive boosting |
+| `predict_adaboost()` | Weighted voting prediction for AdaBoost |
 
 #### Hyperparameter Tuning
+| Method | Description |
+|--------|-------------|
+| `hyperparameter_grid_search(...)` | Grid search for optimal parameters |
+
+**Tunable Parameters:**
 - `n_estimators`: Number of trees in the forest
 - `max_depth`: Maximum tree depth
-- `min_samples_split`: Minimum samples to split a node
 - `max_features`: Features considered per split
 
 #### Evaluation
 - Confusion matrix analysis
 - Grid search for optimal parameters
-- Feature importance analysis
+- Feature importance visualization
 
 ### 4. Support Vector Machines (Theory)
 
